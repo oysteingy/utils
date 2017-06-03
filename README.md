@@ -4,8 +4,6 @@ Args: IP-network, wildcard, optional IPaddress to check wheter it's matched by n
 
 ```
 ./acl_wildcard_check.py  208.67.220.220 0.0.2.2 208.67.222.222
-
-
 208.67.220.220/30
 208.67.220.224/27
 208.67.221.0/24
