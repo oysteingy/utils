@@ -7,12 +7,8 @@ import sys
 
 def main(address, mask):
 
-
-    mask_int = int.from_bytes((ipaddress.IPv4Address(mask).packed), "big")
-    address_int = int.from_bytes(ipaddress.IPv4Address(address).packed, "big")
-
-    lower = ipaddress.IPv4Address((2 ** 32 - 1 - mask_int) & address_int)
-    upper = ipaddress.IPv4Address(mask_int | address_int)
+    lower = ipaddress.IPv4Address((((2**32) - 1) - int(ipaddress.IPv4Address(mask)))  & int(ipaddress.IPv4Address(address)))
+    upper = ipaddress.IPv4Address(int(ipaddress.IPv4Address(mask)) | int(ipaddress.IPv4Address(address))) 
 
     return list(ipaddress.summarize_address_range(lower, upper))
 
@@ -24,7 +20,7 @@ if __name__ == '__main__':
         for net in networks:
             print("{0}".format(net))
             if (len(sys.argv) == 4):
-                    if(ipaddress.ip_network(net).overlaps(ipaddress.ip_network(sys.argv[3]))):
+                    if(ipaddress.IPv4Network(net).overlaps(ipaddress.IPv4Network(sys.argv[3]))):
                         print("match {0} {1}".format(net, sys.argv[3]))
 
     else:
