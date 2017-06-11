@@ -9,7 +9,7 @@ def convert():
     try:
         netmask = ipaddress.IPv4Network(sys.argv[1]).netmask
     except ValueError as err:
-        print("Incorrect IPv4 addr {}", err)
+        print("Incorrect IPv4 addr {}".format(err))
         sys.exit(1)
     #reuse netmask object as IPv4Address 
     netmask = int.from_bytes(ipaddress.IPv4Address(netmask).packed, "big")
