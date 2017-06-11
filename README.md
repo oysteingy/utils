@@ -16,4 +16,17 @@ Args: IP-network, wildcard, optional IPaddress to check wheter it's matched by n
 208.67.222.222/32
 match 208.67.222.222/32 208.67.222.222
 ```
+
+network_to_wildcard_acl.py
+"Converts" IPnetworks to wildcard format (Cisco access lists)
+
+Args: IP-network with netmask. Both 192.168.0.0/24 and 192.168.0.0/255.255.255.0 is valid
+
+```
+$ ./network_to_wildcard_acl.py  10.0.0.4/30 
+permit 10.0.0.4 0.0.0.3 any
+$ ./network_to_wildcard_acl.py  10.0.0.4/255.255.255.252
+permit 10.0.0.4 0.0.0.3 any
+```
+
  
